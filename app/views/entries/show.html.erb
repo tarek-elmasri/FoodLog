@@ -1,0 +1,39 @@
+<% content_for :title  do %>
+  <%= @entry.meal_type.capitalize %> &ndash; <%= DateTime.now.to_s(:head_date) %>
+<% end %>
+
+
+<div class='block'>
+  <div class='columns is-centered mt-6'>
+    <div class='column is-one-third'>
+      <div class='card'>
+        <div class='card-header'>
+          <header class='card-header-title'>
+          <%= @entry.meal_type %> : <%= @entry.category.title %>
+          </header>
+        </div>
+        <div class='card-content'>
+          <div class='content'>
+            <p class='card-content-item'>
+              Calories : <%= @entry.calories %>
+            </p>
+            <p class='card-content-item'>
+              Fats: <%= @entry.fats %>
+            </p>
+            <p class='card-content-item'>
+              Carbohydrates : <%= @entry.carbohydrates %>
+            </p>
+          </div>
+        </div>
+
+        <div class='card-footer'>
+          <%= link_to entries_path , class: 'card-footer-item' do %>
+            <button class='button is-primary'>Back</button>
+          <% end %>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+

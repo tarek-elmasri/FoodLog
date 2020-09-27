@@ -1,0 +1,77 @@
+<%= form_with(model: entry, local: true) do |form| %>
+  <% if entry.errors.any? %>
+    <div class='block mt-1'>
+    <div class='columns is-centered'>
+    <div class='column is-half'>
+      <article class='message is-centered is-danger'>
+        <div class='message-header'>
+          <p>Error</p>
+        </div>
+        <div class='message-body'>
+          <h2 class='has-text-weight-bold'><%= pluralize(entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+            <ul>
+              <% entry.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        </div>
+      </article>
+    </div>
+    </div>
+    </div>
+  <% end %>
+
+<div class="block">
+  <div class='columns is-centered mt-2'>
+    <div class='column is-one-quarter'>
+      <div class='card'>
+        <div class='card-header has-text-weight-bold'>
+          <header class='card-header-title'>Create new entry:</header>
+        </div>
+        <div class='card-content'>
+          <div class='content'>
+            <div class="field">
+              <%= form.label :meal_type,class: 'label' %>
+                <div class='control'>
+                  <%= form.text_field :meal_type , class: 'input is-small' %>
+                </div>
+            </div>
+            <div class="field">
+              <div class='control'>
+                <%= form.label :calories , class: 'label' %>
+                <%= form.text_field :calories , class: 'input is-small' %>
+              </div>
+            </div>
+            <div class="field">
+              <div class='control'>
+                <%= form.label :fats ,class: 'label'%>
+                <%= form.text_field :fats , class:'input is-small'%>
+              </div>
+            </div>
+            <div class="field">
+              <div class='control'>
+                <%= form.label :carbohydrates ,class: 'label' %>
+                <%= form.text_field :carbohydrates , class: 'input is-small' %>
+              </div>
+            </div>
+            <div class="field">
+              <div class='control'>
+                <%= form.label :category_id ,class: 'label' %>
+                <%= form.select :category_id, Category.all.collect {|u| [u.title,u.id]}, class: 'select' %>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <p class='control'>
+              <div class='card-footer'>
+                <div class='card-footer-item'>
+                  <%= form.submit( class: 'button is-primary') %>
+                </div>
+              </div>
+            </p>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<% end %>

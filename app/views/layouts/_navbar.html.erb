@@ -1,0 +1,30 @@
+<section class="hero is-link is-small">
+    <div class="hero-head">
+        <div class="navbar">
+            <div class="container">
+                <div class="navbar-brand mt-2">
+                    <span><%= link_to("FoodLog", root_path, class: 'navbar-item has-text-weight-bold') %></span>
+                </div>
+                <div class="navbar-end">
+                    <div class="navbar-item"> 
+                        <span >
+                            <%= link_to "Create new" , new_entry_path , class: "button is-primary"%>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title has-text-centered">
+                <% if content_for (:title) %>
+                    <%= yield :title %>
+                <% else %>
+                    FoodBlog
+                <%end %>
+            </h1>
+            
+        </div>
+    </div>
+</section>

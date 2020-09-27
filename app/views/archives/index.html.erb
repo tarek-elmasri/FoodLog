@@ -1,0 +1,49 @@
+<% content_for :title  do %>
+    Foodlog Calender
+<% end %>
+
+
+<div class='columns is-centered mt-3'>
+    <div class='column is-half'>
+        <% @entries.each do |day,entries| %>
+            <h3 class='is-size-4 has-text-weight-bold mt-2  mb-2 has-text-centered'> Entries for <%= day %></h3>
+
+            <div class='level is-mobile'>
+                <div class='level-item has-text-centered'>
+                    <div>
+                        <p class='heading'> Cal </p>
+                        <p class='title'><%= entries.pluck(:calories).sum %> </p>
+                    </div>
+                </div>
+                <div class='level-item has-text-centered'>
+                    <div>
+                        <p class='heading'> Carb </p>
+                        <p class='title'><%= entries.pluck(:carbohydrates).sum %>g</p>
+                    </div>
+                </div>
+                <div class='level-item has-text-centered'>
+                    <div>                
+                        <p class='heading'> Cal </p>
+                        <p class='title'><%= entries.pluck(:fats).sum %>g</p>
+                    </div>
+                </div>
+            </div>
+
+            <% entries.each do |entry| %>
+                <div class='card'>
+                    <div class='card-content'>
+                        <strong> <%= entry.meal_type %> / <%= entry.category.title %></strong>
+                        <p>
+                            <%= entry.calories %> calories,
+                            <%= entry.fats %>g fats,
+                            <%= entry.carbohydrates %>g carbohydrates.
+                        </p>
+                    </div>
+                </div>
+            <% end %>
+            <%= link_to "show",{:controller => 'archives' , :action => 'show' , day_select: day} , class:'button is-link is-centered' %>
+            <hr>
+
+        <% end %>
+    </div>
+</div>
